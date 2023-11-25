@@ -1,0 +1,273 @@
+:root {
+    --primary-usa-color: #5A5A5A;
+    --primary-title-color: #121212;
+    --primary-par-color: #64898E;
+    --primary-white-color: #fff;
+    --primary-button-color: #115;
+}
+
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;800;900&display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D3F0F4;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(35, 35, 191);
+    transition: all 0.2s;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 17px;
+    margin-bottom: 60px;
+}
+
+header .top-left {
+    display: flex;
+    justify-content: space-between;
+    gap: 13px;
+    align-items: center;
+}
+
+.top-left input {
+    width: 80%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 102px;
+    padding-left: 45px;
+    border-radius: 10px;
+    background: #F4FEFF;
+    line-height: 16px;
+    letter-spacing: 0.267px;
+    color: #B5CDD0;
+}
+
+.top-left button {
+    padding: 15px;
+    background-color: var(--primary-button-color);
+    border-radius: 10px;
+    color: var(--primary-white-color);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 16px;
+    letter-spacing: 0.267px;
+}
+
+.top-left button:hover {
+    background-color: var(--primary-white-color);
+    color: var(--primary-button-color);
+    transition: all 0.3s;
+}
+
+header .top-right {
+    display: flex;
+    gap: 60px;
+    color: var(--primary-button-color);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.267px;
+}
+.top-right button{
+    background-color: transparent;
+    padding: 8px;
+    border-radius: 8px;
+    border:none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.top-right button:hover {
+    color:var(--primary-white-color);
+    transition: all 0.4s;
+}
+
+/* header finished */
+
+
+/* hero started */
+
+.main-info {
+    display: flex;
+    gap: 70px;
+    margin-bottom: 80px;
+}
+
+.main-info h2 {
+    /* width: 80%; */
+    color: var(--primary-button-color);
+    font-family: Dela Gothic One;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 60px;
+    letter-spacing: 1px;
+}
+
+.main-info p {
+    width: 600px;
+    color: var(--primary-par-color);
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+
+}
+
+.movie-info {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 40px;
+}
+
+.movie-info img {
+    cursor: pointer;
+}
+
+.movie-info .movie-card {
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-white-color);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.movie-card span {
+    color: var(--primary-usa-color);
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.267px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.movie-card h3 {
+    color: var(--primary-title-color);
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    letter-spacing: 0.267px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.movie-card p {
+    color: var(--primary-title-color);
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.267px;
+    margin-bottom: 8px;
+}
+
+.movie-card button {
+    width: 90%;
+    border-radius: 5px;
+    background: #115;
+    color: var(--primary-white-color);
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.267px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+.movie-card button:hover {
+    background-color: var(--primary-white-color);
+    color: var(--primary-button-color);
+    transition: all 0.3s;
+}
+
+#loadingSpinner {
+    display: none;
+}
+
+#resultContainer {
+    margin-top: 20px;
+}
+select{
+    background-color:#115;
+    padding: 8px;
+    border:none;
+    border-radius:15px;
+    color:var(--primary-white-color);
+}
+select option{
+    background-color: transparent;
+    padding: 4px;
+    border:none;
+    border-radius:15px;
+    color:var(--primary-white-color);
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(5px); /* Blur effect */
+    z-index: 999; /* Ensure it appears above other elements */
+  }
+  
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display:flex;
+    flex-direction: column;
+    gap:30px;
+    font-size: 24px;
+    
+  }
+  .popup img{
+    width: 30%;
+    height: 50%;
+    
+  }
+  .popup button {
+    margin-top: 10px;
+    width: 30%;
+    padding: 8px;
+    cursor:pointer;
+  }
+  

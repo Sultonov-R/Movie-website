@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Movies</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="top-left">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="20" fill="url(#paint0_linear_4_912)" />
+                    <defs>
+                        <linearGradient id="paint0_linear_4_912" x1="40" y1="0" x2="0" y2="40"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#090932" />
+                            <stop offset="1" stop-color="#5555F8" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <a href="#">
+                    <img src="./images/Movie.png" alt="Movie">
+                </a>
+
+                <form id="form">
+                    <input type="text" id="inputForm" placeholder="Search for movies and more">
+                </form>
+
+                <button class="btn" id="btn">Search</button>
+
+                <div id="loadingSpinner">Loading...</div>
+
+                <div id="resultContainer"></div>
+
+            </div>
+            <div class="header-middle">
+                <form >
+                    <select name="film" id="selectFilm">
+                        <option value="All">All</option>
+                        <option value="English">English</option>
+                        <option value="Russian">Russian</option>
+                    </select>
+                    <select name="film2" id="year">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                    </select>
+                </form>
+            </div>
+            <div class="top-right">
+                <button id="btnLogin">Login</button>
+                <button id="btnRegister">Register</button>
+              </div>
+              
+        </div>
+    </header>
+
+    <hero-section>
+        <div class="container">
+            <div class="main-info">
+                <h2>Most complete
+                    movie information
+                    search engine</h2>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pulvinar erat in arcu tempor bibendum.
+                    Donec molestie quam ligula, et blandit diam scelerisque at. Cras quis auctor dui.
+                    <br>
+                    <br><br>
+
+                    Phasellus aliquet dictum nulla ac scelerisque. Quisque convallis orci ac convallis venenatis. Nullam
+                    volutpat et nisi nec pulvinar. Pellentesque nulla tortor, auctor at accumsan ac, blandit ornare est.
+                    Aliquam eget faucibus tellus.
+                </p>
+            </div>
+            <div class="movie-info" id="mainBlock">
+                <!-- <div class="movie-card">
+                    <img src="./images/image 5.png" alt="pc">
+                    <br>
+                    <span>USA,2022</span>
+                    <h3>GLASS ONION: KNIVES O...</h3>
+                    <p>GLASS ONION: KNIVES O...</p>
+                    <p>fee2</p>
+                    <button id='btn-info'>See details</button>
+                </div>
+                <div class="movie-card">
+                    <img src="./images/image 5.png" alt="pc">
+                    <br>
+                    <span>USA,2022</span>
+                    <h3>GLASS ONION: KNIVES O...</h3>
+                    <p>GLASS ONION: KNIVES O...</p>
+                    <p>fee2</p>
+                    <button>See details</button>
+                </div>
+                <div class="movie-card">
+                    <img src="./images/image 5.png" alt="pc">
+                    <br>
+                    <span>USA,2022</span>
+                    <h3>GLASS ONION: KNIVES O...</h3>
+                    <p>GLASS ONION: KNIVES O...</p>
+                    <p>fee2</p>
+                    <button>See details</button>
+                </div>
+                <div class="movie-card">
+                    <img src="./images/image 5.png" alt="pc">
+                    <br>
+                    <span>USA,2022</span>
+                    <h3>GLASS ONION: KNIVES O...</h3>
+                    <p>GLASS ONION: KNIVES O...</p>
+                    <p>fee2</p>
+                    <button>See details</button>
+                </div> -->
+            </div>
+            <div class="details" id="details" background-color="red" width="300">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, tempore. Vitae mollitia cum dolorem sit.</p>
+            </div>
+        </div>
+    </hero-section>
+
+
+    <script type="module" src="./js/index.js"></script>
+</body>
+
+</html>
