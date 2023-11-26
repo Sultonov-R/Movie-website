@@ -16,15 +16,22 @@ const SEARCH_API =
   'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="';
 
 let dataArray = [];
-let number = Math.random() * 100;
+let number = Math.random() * 10;
 
 document.addEventListener("DOMContentLoaded", async function () {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=2`
+      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=${number}`
     );
     const data = await response.json();
-    localStorage.setItem("movies", JSON.stringify(data));
+    let dataArray = JSON.parse(localStorage.getItem("movies")) || [];
+
+    if (!Array.isArray(dataArray)) {
+      dataArray = [];
+    }
+    dataArray.push(...data.results);
+    localStorage.setItem("movies", JSON.stringify({ results: dataArray }));
+
     displayCards(data.results);
   } catch (error) {
     console.log(error);
