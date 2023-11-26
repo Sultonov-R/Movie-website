@@ -24,13 +24,16 @@ document.addEventListener("DOMContentLoaded", async function () {
       `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=${number}`
     );
     const data = await response.json();
+
     let dataArray = JSON.parse(localStorage.getItem("movies")) || [];
 
     if (!Array.isArray(dataArray)) {
       dataArray = [];
     }
+
     dataArray.push(...data.results);
-    localStorage.setItem("movies", JSON.stringify({ results: dataArray }));
+
+    localStorage.setItem("movies", JSON.stringify(dataArray));
 
     displayCards(data.results);
   } catch (error) {
@@ -60,33 +63,35 @@ function displayCards(cards) {
 
 btn.addEventListener("click", function (event) {
   event.preventDefault();
+
   function searchInputValue() {
     if (!inputSearch.value) {
       alert("Please, enter a movie name");
       return;
     }
-    if (inputSearch.value) {
-      let searchedMovie = inputSearch.value.trim().toLowerCase();
-      let dataMovie = JSON.parse(localStorage.getItem("movies"));
 
-      if (dataMovie && dataMovie.results) {
-        let filteredMovies = dataMovie.results.filter((ele) =>
-          ele.title.toLowerCase().includes(searchedMovie)
-        );
+    let storedData = JSON.parse(localStorage.getItem("movies")) || [];
+    if (storedData) {
+      let filteredMovies = storedData.filter((ele) =>
+        ele.title.toLowerCase().includes(inputSearch.value.toLowerCase())
+      );
+      console.log(filteredMovies);
 
-        if (filteredMovies.length > 0) {
-          displayCards(filteredMovies);
-        } else {
-          alert("No matching movies found");
-        }
+      if (filteredMovies.length > 0) {
+        displayCards(filteredMovies);
       } else {
-        console.error("Invalid data structure in localStorage");
+        alert("No matching movies found");
       }
+    } else {
+      console.error("Invalid data structure in localStorage");
     }
+
     inputSearch.value = "";
   }
-  searchInputValue(inputSearch.value);
+
+  searchInputValue();
 });
+
 
 selectFilm.addEventListener("change", function () {
   filterMovies();
