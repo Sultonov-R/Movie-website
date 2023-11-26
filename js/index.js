@@ -112,7 +112,7 @@ function filterMovies() {
     return;
   }
 
-  let filteredMovies = dataMovies.results.filter((movie) => {
+  let filteredMovies = dataMovies.filter((movie) => {
     const languageMatch =
       selectedLanguage === "all" ||
       movie.original_language.toLowerCase() === selectedLanguage;
@@ -136,7 +136,7 @@ selectFilm.addEventListener("change", function () {
   }
 
   let chooseLanguage = JSON.parse(localStorage.getItem("movies"));
-  let filteredMovies = chooseLanguage.results.filter((ele) => {
+  let filteredMovies = chooseLanguage.filter((ele) => {
     return ele.original_language.toLowerCase() == selectedLanguage;
   });
   displayCards(filteredMovies);
