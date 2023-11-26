@@ -8,9 +8,8 @@ const selectFilm = document.getElementById("selectFilm");
 const selectYear = document.getElementById("year");
 const btnInfo = document.getElementById("btn-info");
 const details = document.getElementById("details");
-const btnLogin = document.getElementById('btnLogin');
-const btnRegister = document.getElementById('btnRegister');
- 
+const btnLogin = document.getElementById("btnLogin");
+const btnRegister = document.getElementById("btnRegister");
 
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 const SEARCH_API =
@@ -22,15 +21,16 @@ let number = Math.random() * 100;
 document.addEventListener("DOMContentLoaded", async function () {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1`
+      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=2`
     );
     const data = await response.json();
     localStorage.setItem("movies", JSON.stringify(data));
     displayCards(data.results);
   } catch (error) {
     console.log(error);
-  } 
+  }
 });
+
 function displayCards(cards) {
   let data = "";
   cards.forEach((el) => {
@@ -51,10 +51,12 @@ function displayCards(cards) {
   mainBlock.innerHTML = data;
 }
 
-btn.addEventListener("click", function () {
+btn.addEventListener("click", function (event) {
+  event.preventDefault();
   function searchInputValue() {
     if (!inputSearch.value) {
       alert("Please, enter a movie name");
+      return;
     }
     if (inputSearch.value) {
       let searchedMovie = inputSearch.value.trim().toLowerCase();
@@ -79,19 +81,38 @@ btn.addEventListener("click", function () {
   searchInputValue(inputSearch.value);
 });
 
-// selectFilm.addEventListener('change', function() {
+selectFilm.addEventListener("change", function () {
+  filterMovies();
+});
 
-//   let selectedLanguage = selectFilm.value.trim().toLowerCase();
-//   if(selectedLanguage.results) {
-//     console.log('hi');
-//     return;
-//   }
-//   let chooseLanguage = JSON.parse(localStorage.getItem('movies'));
-//  let filteredMovies = chooseLanguage.results.filter(ele => {
-//     return ele.original_language == selectedLanguage;
-//   })
-//   displayCards(filteredMovies);
-// })
+selectYear.addEventListener("change", function () {
+  filterMovies();
+});
+
+function filterMovies() {
+  let selectedLanguage = selectFilm.value.trim().toLowerCase();
+  let selectedYear = selectYear.value.trim();
+
+  let dataMovies = JSON.parse(localStorage.getItem("movies"));
+
+  if (selectedLanguage === "all" && selectedYear === "all") {
+    displayCards(dataMovies.results);
+    return;
+  }
+
+  let filteredMovies = dataMovies.results.filter((movie) => {
+    const languageMatch =
+      selectedLanguage === "all" ||
+      movie.original_language.toLowerCase() === selectedLanguage;
+
+    const yearMatch =
+      selectedYear === "all" || movie.release_date.includes(selectedYear);
+
+    return languageMatch && yearMatch;
+  });
+
+  displayCards(filteredMovies);
+}
 
 selectFilm.addEventListener("change", function () {
   let selectedLanguage = selectFilm.value.trim().toLowerCase();
@@ -118,7 +139,6 @@ mainBlock.addEventListener("click", function (event) {
   ) {
     let movies = JSON.parse(localStorage.getItem("movies"));
     let movieId = event.target.dataset.movieId;
-    console.log(movieId);
     let selectedMovie = movies.results.find(
       (movie) => movie.id === parseInt(movieId, 10)
     );
@@ -129,10 +149,10 @@ mainBlock.addEventListener("click", function (event) {
 });
 
 function showDetails(movie) {
-  const backdrop = document.createElement('div');
-  backdrop.classList.add('backdrop');
-  const popup = document.createElement('div');
-  popup.classList.add('popup');
+  const backdrop = document.createElement("div");
+  backdrop.classList.add("backdrop");
+  const popup = document.createElement("div");
+  popup.classList.add("popup");
 
   let detailsHTML = `
     <div class="movie-details">
@@ -145,6 +165,7 @@ function showDetails(movie) {
       <p><b>Release date</b>: ${movie.release_date}</p>
       <p> <b>Overview</b>: ${movie.overview}</p>
       <p> <b>Popularity</b>: ${movie.popularity}</p>
+      <i class="fa-regular fa-heart"></i>
     </div>
   `;
 
@@ -153,9 +174,9 @@ function showDetails(movie) {
   document.body.appendChild(backdrop);
   document.body.appendChild(popup);
 
-  const closeButton = document.createElement('button');
-  closeButton.innerText = 'Close';
-  closeButton.addEventListener('click', () => {
+  const closeButton = document.createElement("button");
+  closeButton.innerText = "Close";
+  closeButton.addEventListener("click", () => {
     document.body.removeChild(backdrop);
     document.body.removeChild(popup);
   });
@@ -163,10 +184,10 @@ function showDetails(movie) {
 }
 
 function loginButtonClick() {
-  const backdropLogin = document.createElement('div');
-  backdropLogin.classList.add('backdrop');
-  const popupLogin = document.createElement('div');
-  popupLogin.classList.add('popup');
+  const backdropLogin = document.createElement("div");
+  backdropLogin.classList.add("backdrop");
+  const popupLogin = document.createElement("div");
+  popupLogin.classList.add("popup");
 
   let loginHTML = `
     <form>
@@ -182,12 +203,11 @@ function loginButtonClick() {
   document.body.appendChild(backdropLogin);
   document.body.appendChild(popupLogin);
 
-  const closeLoginButton = document.createElement('button');
-  closeLoginButton.innerText = 'Close';
-  closeLoginButton.addEventListener('click', () => {
+  const closeLoginButton = document.createElement("button");
+  closeLoginButton.innerText = "Close";
+  closeLoginButton.addEventListener("click", () => {
     document.body.removeChild(backdropLogin);
     document.body.removeChild(popupLogin);
   });
   popupLogin.appendChild(closeLoginButton);
 }
-

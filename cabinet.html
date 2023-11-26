@@ -1,14 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cabinet</title>
+    <title>User Profile</title>
+    <style>
+        .container {
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: lightblue;
+            height: 100vh;
+            padding: 20px;
+
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <div class="container">
+        <h3 id="userName">Name:</h3>
+        <p id="userEmail">Email:</p>
+        <p>Favorite Movies:</p>
+        <ul id="favoriteMovies">
+
+        </ul>
+    </div>
+
     <script>
-        alert('Success')
+        const storedUserData = localStorage.getItem('allUserData');
+
+        if (storedUserData) {
+            const userData = JSON.parse(storedUserData);
+            console.log(userData);
+
+            const userNameElement = document.getElementById('userName');
+            const userEmailElement = document.getElementById('userEmail');
+            const favoriteMoviesElement = document.getElementById('favoriteMovies');
+
+            userNameElement.textContent = `Name: ${userData[0].username}`;
+            userEmailElement.textContent = `Email: ${userData[0].email}`;
+
+            if (userData[0].favoriteMovies && userData[0].favoriteMovies.length > 0) {
+                userData[0].favoriteMovies.forEach(movie => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = movie;
+                    favoriteMoviesElement.appendChild(listItem);
+                });
+            } else {
+                const listItem = document.createElement('li');
+                listItem.textContent = 'No favorite movies yet.';
+                favoriteMoviesElement.appendChild(listItem);
+            }
+
+        } else {
+            console.log('No user data found.');
+        }
     </script>
 </body>
+
 </html>

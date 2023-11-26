@@ -5,13 +5,11 @@ const inputPassword = document.getElementById("inputPassword");
 const form = document.getElementById("form");
 
 signUpButton.addEventListener("click", function (event) {
+  emailValidate();
+  if (!passwordValidate()) {
+    event.preventDefault();
+  }
 
-    emailValidate();  
-    if (!passwordValidate()) {
-        // Prevent the form submission if the password is not valid
-        event.preventDefault();
-    }  
-    
   if (!inputValue.value || !inputEmail.value || !inputPassword.value) {
     alert("Please fill out all fields!");
   } else {
@@ -42,7 +40,6 @@ signUpButton.addEventListener("click", function (event) {
           alert("please, fill all form!");
         }
         if (inputEmail.value && inputPassword.value) {
-           
           const userExists = allUserData.some(
             (user) =>
               user.email === enteredEmail && user.password === enteredPassword
@@ -52,7 +49,7 @@ signUpButton.addEventListener("click", function (event) {
             const targetUrl = "http://127.0.0.1:5500/cabinet.html";
             window.location.href = targetUrl;
           } else {
-            alert('Invalid password or email');
+            alert("Invalid password or email");
             form.reset();
           }
         }
@@ -67,40 +64,35 @@ signUpButton.addEventListener("click", function (event) {
       window.location.href = targetUrl;
     }
   }
-
-  
 });
-  function emailValidate(){
-    const inputedEmail = inputEmail.value;
+function emailValidate() {
+  const inputedEmail = inputEmail.value;
 
-    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  var validRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    if (inputedEmail.match(validRegex)) {
-  
+  if (inputedEmail.match(validRegex)) {
     //   alert("Valid email address!");
-  
+
     //   document.form1.text1.focus();
-  
-      return true;
-  
-    } else {
-  
-      alert("Invalid email address!");
-  
-      document.form1.text1.focus();
-  
-      return false;
-  
-    }
-  }
 
-  function passwordValidate(){
-    const inputedPassword = inputPassword.value;
+    return true;
+  } else {
+    alert("Invalid email address!");
 
-    if(inputedPassword.length < 8) {
-        alert('Password length should be min 8 character');
-        return false;
-    } else {
-        return true;
-    }
+    document.form1.text1.focus();
+
+    return false;
   }
+}
+
+function passwordValidate() {
+  const inputedPassword = inputPassword.value;
+
+  if (inputedPassword.length < 8) {
+    alert("Password length should be min 8 character");
+    return false;
+  } else {
+    return true;
+  }
+}
