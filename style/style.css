@@ -263,7 +263,7 @@ select option {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    font-size: 24px;
+    font-size: 20px;
 
 }
 

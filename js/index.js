@@ -151,7 +151,7 @@ mainBlock.addEventListener("click", function (event) {
   ) {
     let movies = JSON.parse(localStorage.getItem("movies"));
     let movieId = event.target.dataset.movieId;
-    let selectedMovie = movies.results.find(
+    let selectedMovie = movies.find(
       (movie) => movie.id === parseInt(movieId, 10)
     );
     if (selectedMovie) {
