@@ -1,0 +1,75 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-color: lightblue;
+}
+.form-box{
+    width: 90%;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #FFF;
+    padding: 50px 60px 70px;
+    text-align: center;
+    /* background-color: aqua; */
+}
+.form-box h2{
+    font-size: 26px;
+    margin-bottom: 50px;
+    position: relative;
+    color:blueviolet;
+}
+.input-field{
+    background:#eaeaea;
+    margin: 15px 0;
+    margin-left:10px;
+    border-radius:3px;
+    display: flex;
+    align-items:center;
+    max-height: 65px;
+    transition: max-height 0.5s;
+    overflow: hidden;
+}
+input{
+    width: 100%;
+    background:transparent;
+    border:0;
+    outline: 0;
+    border:none;
+    padding: 18px 15px;
+}
+.input-field i{
+    margin-right: 15px;
+    color: #9999;
+}
+form p{
+    text-align: left;
+    font-size: 15px;
+}
+form p a{
+    text-decoration: none;
+}
+.btn-field{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.btn-field button{
+    flex-basis: 48%;
+    border-radius:20px;
+    background: #3c00a0;
+    color: #fff;
+    height: 40px;
+    cursor: pointer;
+    transition: background 1s;
+}
+.btn-field button.disable{
+    background-color: #eaeaea;
+    color: #555;
+}
+.input-group{
+    height: 280px;
+}

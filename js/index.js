@@ -8,6 +8,9 @@ const selectFilm = document.getElementById("selectFilm");
 const selectYear = document.getElementById("year");
 const btnInfo = document.getElementById("btn-info");
 const details = document.getElementById("details");
+const btnLogin = document.getElementById('btnLogin');
+const btnRegister = document.getElementById('btnRegister');
+ 
 
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 const SEARCH_API =
@@ -26,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayCards(data.results);
   } catch (error) {
     console.log(error);
-  }
+  } 
 });
 function displayCards(cards) {
   let data = "";
@@ -126,15 +129,11 @@ mainBlock.addEventListener("click", function (event) {
 });
 
 function showDetails(movie) {
-  // Create a backdrop element
   const backdrop = document.createElement('div');
   backdrop.classList.add('backdrop');
-
-  // Create a popup element
   const popup = document.createElement('div');
   popup.classList.add('popup');
 
-  // Use the movie details to generate the HTML
   let detailsHTML = `
     <div class="movie-details">
       <img src="${IMG_PATH + movie.poster_path}" alt="pc">
@@ -149,20 +148,46 @@ function showDetails(movie) {
     </div>
   `;
 
-  // Set the innerHTML of the popup
   popup.innerHTML = detailsHTML;
 
-  // Append the backdrop and popup to the body
   document.body.appendChild(backdrop);
   document.body.appendChild(popup);
 
-  // Add a close button to the popup
   const closeButton = document.createElement('button');
   closeButton.innerText = 'Close';
   closeButton.addEventListener('click', () => {
-    // Remove the backdrop and popup when the close button is clicked
     document.body.removeChild(backdrop);
     document.body.removeChild(popup);
   });
   popup.appendChild(closeButton);
 }
+
+function loginButtonClick() {
+  const backdropLogin = document.createElement('div');
+  backdropLogin.classList.add('backdrop');
+  const popupLogin = document.createElement('div');
+  popupLogin.classList.add('popup');
+
+  let loginHTML = `
+    <form>
+    <label>Login</label>
+      <input type='text' placeholder = 'Username'>
+      <input type='text' placeholder = 'Lastname'>
+      <input type = 'password' placeholder = 'Password'
+    </form>
+  `;
+
+  popupLogin.innerHTML = loginHTML;
+
+  document.body.appendChild(backdropLogin);
+  document.body.appendChild(popupLogin);
+
+  const closeLoginButton = document.createElement('button');
+  closeLoginButton.innerText = 'Close';
+  closeLoginButton.addEventListener('click', () => {
+    document.body.removeChild(backdropLogin);
+    document.body.removeChild(popupLogin);
+  });
+  popupLogin.appendChild(closeLoginButton);
+}
+
