@@ -31,9 +31,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       dataArray = [];
     }
 
-    dataArray.push(...data.results);
-
+    data.results.forEach((newMovie) => {
+      const exists = dataArray.some((existingMovie) => existingMovie.id === newMovie.id);
+      if (!exists) {
+        dataArray.push(newMovie);
+      }
+    });
     localStorage.setItem("movies", JSON.stringify(dataArray));
+    
 
     displayCards(data.results);
   } catch (error) {
